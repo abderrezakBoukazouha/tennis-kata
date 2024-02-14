@@ -2,7 +2,7 @@ package org.winside.kata.tennis.useCase;
 
 import java.util.Random;
 
-import static org.winside.kata.tennis.useCase.Printer.*;
+import static org.winside.kata.tennis.utilis.Printer.*;
 
 public record TieBreak(Game game) {
 

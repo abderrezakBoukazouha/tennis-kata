@@ -1,4 +1,4 @@
-package org.winside.kata.tennis.useCase;
+package org.winside.kata.tennis.utilis;
 
 import org.winside.kata.tennis.entities.GamePoint;
 

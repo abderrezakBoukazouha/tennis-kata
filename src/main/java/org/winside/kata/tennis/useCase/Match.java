@@ -1,5 +1,7 @@
 package org.winside.kata.tennis.useCase;
 
+import org.winside.kata.tennis.utilis.Printer;
+
 public class Match {
 
     private final Set set;

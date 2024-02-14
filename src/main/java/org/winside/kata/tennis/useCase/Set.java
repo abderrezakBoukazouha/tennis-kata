@@ -3,8 +3,8 @@ package org.winside.kata.tennis.useCase;
 import lombok.Getter;
 import org.winside.kata.tennis.entities.Stats;
 
-import static org.winside.kata.tennis.useCase.Printer.printGameScore;
-import static org.winside.kata.tennis.useCase.Printer.printSetScore;
+import static org.winside.kata.tennis.utilis.Printer.printGameScore;
+import static org.winside.kata.tennis.utilis.Printer.printSetScore;
 
 @Getter
 public class Set {

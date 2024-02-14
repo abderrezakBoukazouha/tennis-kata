@@ -6,8 +6,8 @@ import org.winside.kata.tennis.entities.Player;
 import java.util.Arrays;
 import java.util.Random;
 
-import static org.winside.kata.tennis.useCase.Printer.printGameWinner;
-import static org.winside.kata.tennis.useCase.Printer.printPointScore;
+import static org.winside.kata.tennis.utilis.Printer.printGameWinner;
+import static org.winside.kata.tennis.utilis.Printer.printPointScore;
 
 public class Game {
 

@@ -1,11 +1,11 @@
-package org.winside.kata.tennis.useCase;
+package org.winside.kata.tennis.utilis;
 
 import org.winside.kata.tennis.entities.Player;
 
 import java.util.Arrays;
 
 import static org.winside.kata.tennis.entities.GamePoint.WON;
-import static org.winside.kata.tennis.useCase.ScoreMapper.gamePointMapper;
+import static org.winside.kata.tennis.utilis.ScoreMapper.gamePointMapper;
 
 public class Printer {
     public static void printGameWinner(Player player) {
