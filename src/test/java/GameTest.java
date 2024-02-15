@@ -1,19 +1,17 @@
 import org.junit.jupiter.api.RepeatedTest;
 import org.winside.kata.tennis.entities.Player;
-import org.winside.kata.tennis.useCase.Game;
-import org.winside.kata.tennis.useCase.Point;
+import org.winside.kata.tennis.use_case.Game;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.winside.kata.tennis.entities.GamePoint.WON;
 
-public class GameTest {
+class GameTest {
     @RepeatedTest(20)
-    public void gameRulesTest() {
+    void gameRulesTest() {
         // GIVEN
         Player federer = new Player("federer");
         Player kygrios = new Player("kygrios");
-        Point point = new Point();
 
         Game game = new Game(federer, kygrios);
 

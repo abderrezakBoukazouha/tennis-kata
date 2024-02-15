@@ -5,24 +5,45 @@ import org.winside.kata.tennis.entities.Player;
 import java.util.Arrays;
 
 import static org.winside.kata.tennis.entities.GamePoint.WON;
-import static org.winside.kata.tennis.utilis.ScoreMapper.gamePointMapper;
 
 public class Printer {
+    private Printer() {
+        // Classe utilisaire (ie uniquement des méthodes statiques) => constructeur privé pour ne pas pouvoir l'instancier
+    }
+
     public static void printGameWinner(Player player) {
-        System.out.println();
-        System.out.println("/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#");
-        System.out.println("Game won by : " + player.getName());
-        System.out.println("/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#");
-        System.out.println();
+        // Possible d'utiliser la fonctionnalité "text bloc" introduite en Java 15
+        var message = """
+                
+                /#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#
+                Game won by : %s
+                /#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#
+                """.formatted(player.getName());
+        System.out.println(message);
+//        System.out.println();
+//        System.out.println("/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#");
+//        System.out.println("Game won by : " + player.getName());
+//        System.out.println("/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#/#");
+//        System.out.println();
     }
 
     public static void printPointScore(Player[] players, Player pointWinner, int pointPlayed) {
         if (Arrays.stream(players).anyMatch(player -> player.getGamePoint().equals(WON))) {
             return;
         }
-        System.out.println("Point " + pointPlayed + " won by : " + pointWinner.getName());
-        System.out.println("actual score : " + gamePointMapper(players[0].getGamePoint())
-                + " - " + gamePointMapper(players[1].getGamePoint()));
+        var message = """
+                Point %d won by : %s
+                actual score : %s - %s"""
+                .formatted(
+                        pointPlayed,
+                        pointWinner.getName(),
+                        players[0].getGamePoint(), // override toString sur l'Enum permet de se passer de gamePointMapper
+                        players[1].getGamePoint()
+                );
+        System.out.println(message);
+//        System.out.println("Point " + pointPlayed + " won by : " + pointWinner.getName());
+//        System.out.println("actual score : " + gamePointMapper(players[0].getGamePoint())
+//                + " - " + gamePointMapper(players[1].getGamePoint()));
     }
 
     public static void printGameScore(Player firstPlayer, Player secondPlayer) {

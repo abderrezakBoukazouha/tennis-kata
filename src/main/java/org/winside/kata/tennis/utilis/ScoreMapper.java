@@ -3,25 +3,19 @@ package org.winside.kata.tennis.utilis;
 import org.winside.kata.tennis.entities.GamePoint;
 
 public class ScoreMapper {
+    private ScoreMapper() {
+        // Classe utilisaire (ie uniquement des méthodes statiques) => constructeur privé pour ne pas pouvoir l'instancier
+    }
 
     public static String gamePointMapper(GamePoint gamePoint) {
-        switch (gamePoint) {
-            case ZERO -> {
-                return "0";
-            }
-            case FIFTEEN -> {
-                return "15";
-            }
-            case THIRTY -> {
-                return "30";
-            }
-            case FORTY -> {
-                return "40";
-            }
-            case ADVANTAGE -> {
-                return "AD";
-            }
-            default -> throw new RuntimeException("Unknown game point");
-        }
+        return switch (gamePoint) {
+            case ZERO -> "0";
+            case FIFTEEN -> "15";
+            case THIRTY -> "30";
+            case FORTY -> "40";
+            case ADVANTAGE -> "AD";
+//            case WON -> "WON"; // ?
+            default -> throw new RuntimeException("Unknown game point"); // Pas testé
+        };
     }
 }

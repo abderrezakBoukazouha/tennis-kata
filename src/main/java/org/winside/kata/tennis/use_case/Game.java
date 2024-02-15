@@ -1,5 +1,6 @@
-package org.winside.kata.tennis.useCase;
+package org.winside.kata.tennis.use_case;
 
+import lombok.Getter;
 import org.winside.kata.tennis.entities.GamePoint;
 import org.winside.kata.tennis.entities.Player;
 
@@ -9,35 +10,27 @@ import java.util.Random;
 import static org.winside.kata.tennis.utilis.Printer.printGameWinner;
 import static org.winside.kata.tennis.utilis.Printer.printPointScore;
 
+@Getter
 public class Game {
 
+    private final Random random = new Random(); // ne pas redéfinir "new Random()" à chaque appel : en fonction de l'implémentation de la JVM, 2 appels successifs pourraient produire la même valeur
     private final Player firstPlayer;
     private final Player secondPlayer;
     private final Player[] players;
-    private final Point point;
+    /* Question : pourquoi une Array (Player[]) plutôt qu'une List<Player> ?
+     * Les listes ont beaucoup plus de fonctionnalités (ça te permettrait de simplifier tes "Arrays.stream" un peu partout)
+     * Plus en utilisant l'interface List tu te laisses la possibilités plus tard de facilement changer l'implémentation que tu utiliserais
+     *
+     * A ça, je rajouterai : ton array/list ne contient que 2 éléments que tu stockes en plus individuellement dans firstPlayer et secondPlayer
+     * ton array n'a donc pas vraiment d'intérêt (et si tu tiens ensuite à vraiment utiliser des streams, tu peux ensuite les retrouver
+     * en faisant un simple "Stream.of(firstPlayer, secondPlayer)"
+     */
     private int pointPlayed = 0;
 
     public Game(Player firstPlayer, Player secondPlayer) {
-        this.point = new Point();
         this.players = new Player[]{firstPlayer, secondPlayer};
         this.firstPlayer = firstPlayer;
         this.secondPlayer = secondPlayer;
-    }
-
-    public Player[] getPlayers() {
-        return players;
-    }
-
-    public Player getFirstPlayer() {
-        return firstPlayer;
-    }
-
-    public Player getSecondPlayer() {
-        return secondPlayer;
-    }
-
-    public int getPointPlayed() {
-        return pointPlayed;
     }
 
     public void play() {
@@ -56,7 +49,7 @@ public class Game {
         Player pointWinner = players[winnerIndex];
         Player pointLoser = players[randomLooserIndex(winnerIndex)];
 
-        point.play(pointWinner, pointLoser);
+        Point.play(pointWinner, pointLoser);
         return pointWinner;
     }
 
@@ -76,14 +69,14 @@ public class Game {
     }
 
     private int randomWinnerIndex() {
-        return new Random().nextInt(players.length);
+        return random.nextInt(players.length);
     }
 
     private int randomLooserIndex(int randomWinnerIndex) {
         return 0 == randomWinnerIndex ? 1 : 0;
     }
 
-    private boolean hasGameEnded() {
+    private boolean hasGameEnded() { // nom inverse de ce que tu vérifies
         return Arrays.stream(players).noneMatch(player -> player.getGamePoint().equals(GamePoint.WON));
     }
 }

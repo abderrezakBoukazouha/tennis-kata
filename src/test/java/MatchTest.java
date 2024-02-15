@@ -1,19 +1,19 @@
 import org.junit.jupiter.api.RepeatedTest;
 import org.winside.kata.tennis.entities.Player;
 import org.winside.kata.tennis.entities.Stats;
-import org.winside.kata.tennis.useCase.*;
-import org.winside.kata.tennis.useCase.Point;
-
+import org.winside.kata.tennis.use_case.Game;
+import org.winside.kata.tennis.use_case.Match;
+import org.winside.kata.tennis.use_case.Set;
+import org.winside.kata.tennis.use_case.TieBreak;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class MatchTest {
+class MatchTest {
 
     @RepeatedTest(10)
-    public void simulateMatch() {
+    void simulateMatch() {
         // GIVEN
         Player federer = new Player("federer");
         Player kygrios = new Player("kygrios");
@@ -23,7 +23,7 @@ public class MatchTest {
         Stats stats = new Stats(new ArrayList<String>());
 
         Set set = new Set(game, tieBreak, stats);
-        Match match = new Match(set);
+        Match match = new Match(set); // mock des sous-parties
 
         // WHEN
         match.play();

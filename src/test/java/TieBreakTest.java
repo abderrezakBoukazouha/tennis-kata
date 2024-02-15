@@ -1,13 +1,13 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.RepeatedTest;
 import org.winside.kata.tennis.entities.Player;
-import org.winside.kata.tennis.useCase.Game;
-import org.winside.kata.tennis.useCase.TieBreak;
+import org.winside.kata.tennis.use_case.Game;
+import org.winside.kata.tennis.use_case.TieBreak;
 
-public class TieBreakTest {
+class TieBreakTest {
 
     @RepeatedTest(20)
-    public void tieBreakRulesTest() {
+    void tieBreakRulesTest() {
         // GIVEN
         Player federer = new Player("federer");
         Player kygrios = new Player("kygrios");

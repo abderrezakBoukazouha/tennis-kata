@@ -1,10 +1,18 @@
-package org.winside.kata.tennis.useCase;
+package org.winside.kata.tennis.use_case;
 
 import java.util.Random;
 
 import static org.winside.kata.tennis.utilis.Printer.*;
 
+/* un "TieBreak" est un type de "Game" particulier : tu aurais pu potentiellement partir d'un  "TieBreak extends Game"
+ * puis juste redéfinir les méthodes nécessaires (en les redéfinissant protected) :
+ * - getPointWinner -> playRandomTieBreakPoint
+ * - getGameWinner -> tieBreakWinner
+ * - hasGameEnded -> tieBreakStillGoing
+ */
 public record TieBreak(Game game) {
+
+    private static final Random RANDOM = new Random();
 
     public void play() {
         printStartTieBreak();
@@ -19,7 +27,7 @@ public record TieBreak(Game game) {
     }
 
     private void playRandomTieBreakPoint() {
-        int tieBreakWinnerIndex = new Random().nextInt(game().getPlayers().length);
+        int tieBreakWinnerIndex = RANDOM.nextInt(game().getPlayers().length);
         game().getPlayers()[tieBreakWinnerIndex].increaseTieBreakPointWon();
     }
 
